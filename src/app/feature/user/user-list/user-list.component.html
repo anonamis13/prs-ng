@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<section class="heading">
+    <span class="page-title font-weight-bold font-italic">{{title}}</span>
+    <a routerLink="/user/create">
+        <img width="20" height="20" src="assets/add-icon.png" title="Add New">
+    </a>
+</section>
+<table *ngIf="users" class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th><a (click)="sortBy('id')">ID</a></th>
+            <th><a (click)="sortBy('userName')">UserName</a></th>
+            <th><a (click)="sortBy('firstName')">FirstName</a></th>
+            <th><a (click)="sortBy('lastName')">LastName</a></th>
+            <th><a (click)="sortBy('reviewer')">Reviewer</a></th>
+            <th><a (click)="sortBy('admin')">Admin</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users | sort:sortCriteria:sortOrder">
+            <td>{{ user.id }}</td>
+            <td>{{ user.userName }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.reviewer ? "Yes" : "No" }}</td>
+            <td>{{ user.admin ? "Yes" : "No" }}</td>
+            <td><a routerLink='/user/detail/{{user.id}}'>
+                    <img width="20" height="20" src="assets/details.png" title="User Details">
+                </a> |
+                <a routerLink='/user/edit/{{user.id}}'>
+                    <img width="20" height="20" src="assets/pencil-icon.png" title="Edit User">
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

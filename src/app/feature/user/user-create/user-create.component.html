@@ -1,0 +1,86 @@
+<app-menu></app-menu>
+<section class="heading">
+    <span class="page-title font-weight-bold font-italic">{{title}}</span>
+</section>
+<p *ngIf='!user'>Loading...</p>
+<div *ngIf='user'>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Id:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.id" class="rounded" type="text" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    UserName:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.userName" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.password" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    FirstName:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.firstName" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    LastName:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.lastName" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PhoneNumber:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.phoneNumber" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input [(ngModel)]="user.email" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Reviewer?
+                </td>
+                <td>
+                    <input [(ngModel)]="user.reviewer" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Admin?
+                </td>
+                <td>
+                    <input [(ngModel)]="user.admin" type="checkbox">
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> |
+    <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+​
+</div>

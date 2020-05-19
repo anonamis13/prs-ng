@@ -1,0 +1,72 @@
+<app-menu></app-menu>
+<section class="heading">
+    <span class="page-title font-weight-bold font-italic">{{title}}</span>
+</section>
+<p *ngIf='!product'>Loading...</p>
+<div *ngIf='product'>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Id:
+                </td>
+                <td>
+                    <input [(ngModel)]="product.id" class="rounded" type="text" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Vendor:
+                </td>
+                <td>
+                    <select [(ngModel)]="product.vendor" class="rounded" [compareWith]="compVendor" style="width: 178px;">
+                        <option *ngFor='let vendor of vendors' [ngValue]='vendor'>{{vendor.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PartNumber:
+                </td>
+                <td>
+                    <input [(ngModel)]="product.partNumber" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input [(ngModel)]="product.name" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Price:
+                </td>
+                <td>
+                    <input [(ngModel)]="product.price" class="rounded" type="number">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Unit:
+                </td>
+                <td>
+                    <input [(ngModel)]="product.unit" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Photopath:
+                </td>
+                <td>
+                    <input [(ngModel)]="product.photopath" class="rounded" type="text">
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> |
+    <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+​
+</div>

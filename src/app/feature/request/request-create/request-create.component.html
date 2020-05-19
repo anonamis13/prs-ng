@@ -1,0 +1,63 @@
+<app-menu></app-menu>
+<section class="heading">
+    <span class="page-title font-weight-bold font-italic">{{title}}</span>
+</section>
+<p *ngIf='!request'>Loading...</p>
+<div *ngIf='request'>
+    <main class="single">
+        <table class="table table-sm">
+            <tr>
+                <td>
+                    Id:
+                </td>
+                <td>
+                    <input [(ngModel)]="request.id" class="rounded" type="text" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    User:
+                </td>
+                <td>
+                    <input [(ngModel)]="request.user.userName" class="rounded" type="text" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description:
+                </td>
+                <td>
+                    <input [(ngModel)]="request.description" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Justification:
+                </td>
+                <td>
+                    <input [(ngModel)]="request.justification" class="rounded" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    DateNeeded:
+                </td>
+                <td>
+                    <input [(ngModel)]="request.dateNeeded" class="rounded" type="date">
+                </td>
+            </tr>
+            <tr>
+                <td> DeliveryMode: </td>
+                <td>
+                 <select [(ngModel)]="request.deliveryMode" class="rounded" style="width: 178px;">
+                     <option value="Mail">Mail</option>
+                     <option value="Pickup">Pickup</option>
+                 </select>
+                </td>
+            </tr>
+        </table>
+    </main>
+    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> |
+    <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
+​
+</div>
