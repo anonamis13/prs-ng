@@ -27,9 +27,9 @@ export class RequestDetailComponent implements OnInit {
   }
 
   delete() {
-    this.requestSvc.delete(this.request.id).subscribe(jr => {
+    this.requestSvc.delete(this.requestId).subscribe(jr => {
       if (jr.errors != null) {
-        console.log("Error deleting request: ", this.request);
+        console.log("Error deleting request: ", this.request, jr.errors);
       }
       else {
         console.log("Request Deleted: ", this.request);

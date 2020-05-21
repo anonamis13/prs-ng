@@ -20,6 +20,10 @@ export class RequestService {
   get(id: number) : Observable<JsonResponse> {
     return this.http.get(url+id) as Observable<JsonResponse>;
   }
+
+  getRequestReviewList(id: number) : Observable<JsonResponse> {
+    return this.http.get(url+"list-review/"+id) as Observable<JsonResponse>;
+  }
   
   create(request: Request) : Observable<JsonResponse> {
     return this.http.post(url, request) as Observable<JsonResponse>;
@@ -27,6 +31,18 @@ export class RequestService {
   
   edit(request: Request) : Observable<JsonResponse> {
     return this.http.put(url, request) as Observable<JsonResponse>;
+  }
+
+  submitForReview(request: Request) : Observable<JsonResponse> {
+    return this.http.put(url + "submit-review", request) as Observable<JsonResponse>;
+  }
+
+  approve(request: Request): Observable<JsonResponse> {
+    return this.http.put(url + "approve", request) as Observable<JsonResponse>;
+  }
+
+  reject(request: Request): Observable<JsonResponse> {
+    return this.http.put(url + "reject", request) as Observable<JsonResponse>;
   }
   
   delete(id: number) : Observable<JsonResponse> {

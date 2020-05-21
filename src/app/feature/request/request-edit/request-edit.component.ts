@@ -4,13 +4,15 @@ import { RequestService } from 'src/app/service/request.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/model/user.class';
+import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-request-edit',
   templateUrl: './request-edit.component.html',
   styleUrls: ['./request-edit.component.css']
 })
-export class RequestEditComponent implements OnInit {
+export class RequestEditComponent extends BaseComponent implements OnInit {
   title: string = "Request-Edit";
   request: Request = new Request();
   requestId: number = 0;
@@ -20,9 +22,13 @@ export class RequestEditComponent implements OnInit {
   constructor(private requestSvc: RequestService,
               private userSvc: UserService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              protected sysSvc: SystemService) {
+              super(sysSvc);
+  }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.route.params.subscribe(parms => this.requestId = parms["id"]);
     this.requestSvc.get(this.requestId).subscribe(jr => {
       this.request = jr.data as Request;
@@ -54,5 +60,10 @@ export class RequestEditComponent implements OnInit {
   backClicked() {
     this.router.navigateByUrl("/request/list");
   }
+
+  isDisabled(): boolean {
+    if (this.loggedInUser.admin) return true;
+    else return false;
+ }
 
 }

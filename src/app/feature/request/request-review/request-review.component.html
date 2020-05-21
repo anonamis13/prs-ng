@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<section class="heading">
+    <span class="page-title font-weight-bold font-italic">{{title}}</span>
+    <a routerLink="/request/create">
+        <img width="20" height="20" src="assets/add-icon.png" title="Add New">
+    </a>
+</section>
+<table *ngIf="requests" class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th><a (click)="sortBy('id')">ID</a></th>
+            <th><a (click)="sortBy('user.lastName')">User</a></th>
+            <th><a (click)="sortBy('description')">Description</a></th>
+            <th><a (click)="sortBy('justification')">Justification</a></th>
+            <th><a (click)="sortBy('dateNeeded')">Date Needed</a></th>
+            <th><a (click)="sortBy('status')">Status</a></th>
+            <th><a (click)="sortBy('total')">Total</a></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let request of requests | sort:sortCriteria:sortOrder">
+            <td>{{ request.id }}</td>
+            <td>{{ request.user.lastName + ", " + request.user.firstName }}</td>
+            <td>{{ request.description }}</td>
+            <td>{{ request.justification }} </td>
+            <td>{{ request.dateNeeded }} </td>
+            <td>{{ request.status }} </td>
+            <td>{{ request.total | currency }} </td>
+            <td><a routerLink="/request/approve/{{ request.id }}"><img src="assets/review.png" width="20" height="20"
+                        title="Detail"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!requests" style="background-color:rgb(236, 149, 149)">No requests to review</div>

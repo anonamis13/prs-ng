@@ -15,7 +15,7 @@ export class UserListComponent extends BaseComponent implements OnInit {
 
   constructor(private userSvc: UserService,
               protected sysSvc: SystemService) {
-    super();
+    super(sysSvc);
   }
 
   ngOnInit(): void {

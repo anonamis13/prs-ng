@@ -14,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   list() : Observable<JsonResponse> {
-    return this.http.get(url) as  Observable<JsonResponse>;
+    return this.http.get(url) as Observable<JsonResponse>;
   }
 
   get(id: number) : Observable<JsonResponse> {

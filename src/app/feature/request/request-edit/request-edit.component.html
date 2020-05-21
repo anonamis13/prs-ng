@@ -86,7 +86,9 @@
                     RejectionReason:
                 </td>
                 <td>
-                    <input [(ngModel)]="request.reasonForRejection" class="rounded" type="text" disabled>
+                    <input *ngIf="!this.loggedInUser.admin" [(ngModel)]="request.reasonForRejection" class="rounded" type="text" disabled>
+                    <input *ngIf="this.loggedInUser.admin" [(ngModel)]="request.reasonForRejection" class="rounded" type="text" >
+                    <!--<input [disabled]="isDisabled()" [(ngModel)]="request.reasonForRejection" class="rounded" type="text">-->
                 </td>
             </tr>
         </table>

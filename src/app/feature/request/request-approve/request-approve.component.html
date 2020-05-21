@@ -1,0 +1,61 @@
+<app-menu></app-menu>
+<div class="component">
+    <section class="heading">
+        <span class="page-title font-weight-bold font-italic">{{title}}</span>
+        <span> | <a routerLink="/request/list-review/{{loggedInUser.id}}">Return to review list...</a></span>
+    </section>
+
+    <div>
+        Request Info:
+        <table class="table table-sm table-striped">
+            <tr>
+                <th>ID</th>
+                <th>UserName</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>{{request.id}}</td>
+                <td *ngIf="request.user">{{request.user.userName}}</td>
+                <td>{{request.description}}</td>
+                <td>{{request.status}}</td>
+                <td>{{request.total}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <section class="heading">
+            <span class="page-title font-weight-bold font-italic">{{title2}} </span>
+        </section>
+
+        <table *ngIf='lineItems' class="table table-sm table-striped">
+            <tr>
+                <th>ID</th>
+                <th>PartNumber</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            <tr *ngFor="let lineItem of lineItems">
+                <td>{{lineItem.id}}</td>
+                <td>{{lineItem.product.partNumber}}</td>
+                <td>{{lineItem.product.name}}</td>
+                <td>{{lineItem.quantity}}</td>
+                <td>{{lineItem.product.price}}</td>
+                <td>{{lineItem.quantity * lineItem.product.price}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <br>
+        <br>
+        <button (click)="approve()" class="btn btn-sm btn-primary">Approve</button>  
+        <input [(ngModel)]="request.reasonForRejection" class="rounded" type="text" placeholder="Reason for Rejection" style="margin:8px">
+        <button *ngIf="request.reasonForRejection" style="background-color:red" (click)="reject()" class="btn btn-sm btn-primary">Reject</button> 
+    </div>
+
+
+</div>

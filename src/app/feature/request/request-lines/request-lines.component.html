@@ -1,0 +1,69 @@
+<app-menu></app-menu>
+<div class="component">
+    <section class="heading">
+        <span class="page-title font-weight-bold font-italic">{{title}}</span>
+        <span> | <a routerLink="/request/list">Return to request list...</a></span>
+    </section>
+
+    <div>
+        Request Info:
+        <table *ngIf="request" class="table table-sm table-striped">
+            <tr>
+                <th>ID</th>
+                <th>UserName</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>{{request.id}}</td>
+                <td *ngIf="request.user">{{request.user.userName}}</td>
+                <td>{{request.description}}</td>
+                <td>{{request.status}}</td>
+                <td>{{request.total}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <section class="heading">
+            <span class="page-title font-weight-bold font-italic">{{title2}} </span>
+            <span *ngIf='(isReviewer || request.user.id==loggedInUser.id) && request.status=="New"'><a routerLink='/line-item/create/{{request.id}}'>
+                    <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+            </span>
+        </section>
+
+        <table *ngIf="request" class="table table-sm table-striped">
+            <tr>
+                <th>ID</th>
+                <th>PartNumber</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngIf="!lineItems">
+                <td colspan='7' style="background-color:rgb(236, 149, 149)">No Line Items yet</td>
+            </tr>
+            <tr *ngFor="let lineItem of lineItems | sort:sortCriteria:sortOrder">
+                <td>{{lineItem.id}}</td>
+                <td>{{lineItem.product.partNumber}}</td>
+                <td>{{lineItem.product.name}}</td>
+                <td>{{lineItem.quantity}}</td>
+                <td>{{lineItem.product.price}}</td>
+                <td>{{lineItem.quantity * lineItem.product.price | currency}}</td>
+                <td *ngIf='(isReviewer || request.user.id==loggedInUser.id) && request.status=="New"'>
+                    <a routerLink='/line-item/edit/{{lineItem.id}}'><img src='assets/pencil-icon.png' width='20' height='20'
+                            title='Edit'>
+                    </a> | 
+                    <img src='assets/delete.jpg' width='20' height='20' (click)='delete(lineItem.id)'>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <span *ngIf='lineItems && lineItems.length!=0 && (isReviewer || request.user.id==loggedInUser.id) && request.status=="New"'>
+    <button (click)="submitForReview()" class="btn btn-sm btn-primary">Submit for Review</button></span>
+
+</div>

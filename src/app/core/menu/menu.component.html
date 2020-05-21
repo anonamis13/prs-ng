@@ -3,5 +3,6 @@
         <li *ngFor="let mi of menuItems" title="{{mi.tooltip}}">
             <a routerLink="{{mi.href}}">{{mi.display}}</a>
         </li>
+        <li style="color: white; font-weight: bold; float: right; padding-right: 20px">Welcome, {{this.loggedInUser.userName}}!</li>
     </ul>
 </nav>

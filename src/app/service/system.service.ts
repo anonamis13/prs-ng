@@ -15,11 +15,15 @@ export class SystemService {
     return (this.loggedInUser == null) ? false : this.loggedInUser.admin;
   }
 
+  isReviewer(): boolean { 
+    return (this.loggedInUser == null) ? false : this.loggedInUser.reviewer;
+  }
+
   checkLogin(): void {
-    // if(this.loggedInUser == null) {
-    //   console.log("User is not logged in... redirecting to login.");
-    //   this.router.navigateByUrl("/user/login");
-    // }
+    if(this.loggedInUser == null) {
+      console.log("User is not logged in... redirecting to login.");
+      this.router.navigateByUrl("/user/login");
+    }
   }
   
 }
