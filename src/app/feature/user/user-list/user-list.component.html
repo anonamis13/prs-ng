@@ -2,13 +2,12 @@
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">{{title}}</span>
     <a routerLink="/user/create">
-        <img width="20" height="20" src="assets/add-icon.png" title="Add New">
+        <img width="20" height="20" style="margin-left: 3px;" src="assets/add-icon.png" title="Add New">
     </a>
 </section>
-<table *ngIf="users" class="table table-sm table-striped">
+<table *ngIf="users" class="table table-hover table-sm table-striped">
     <thead>
         <tr>
-            <th><a (click)="sortBy('id')">ID</a></th>
             <th><a (click)="sortBy('userName')">UserName</a></th>
             <th><a (click)="sortBy('firstName')">FirstName</a></th>
             <th><a (click)="sortBy('lastName')">LastName</a></th>
@@ -18,7 +17,6 @@
     </thead>
     <tbody>
         <tr *ngFor="let user of users | sort:sortCriteria:sortOrder">
-            <td>{{ user.id }}</td>
             <td>{{ user.userName }}</td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>

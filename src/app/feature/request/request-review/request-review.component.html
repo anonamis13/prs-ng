@@ -2,13 +2,12 @@
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">{{title}}</span>
     <a routerLink="/request/create">
-        <img width="20" height="20" src="assets/add-icon.png" title="Add New">
+        <img width="20" height="20" style="margin-left: 3px;" src="assets/add-icon.png" title="Add New">
     </a>
 </section>
-<table *ngIf="requests" class="table table-sm table-striped">
+<table *ngIf="requests" class="table table-hover table-sm table-striped">
     <thead>
         <tr>
-            <th><a (click)="sortBy('id')">ID</a></th>
             <th><a (click)="sortBy('user.lastName')">User</a></th>
             <th><a (click)="sortBy('description')">Description</a></th>
             <th><a (click)="sortBy('justification')">Justification</a></th>
@@ -20,7 +19,6 @@
     </thead>
     <tbody>
         <tr *ngFor="let request of requests | sort:sortCriteria:sortOrder">
-            <td>{{ request.id }}</td>
             <td>{{ request.user.lastName + ", " + request.user.firstName }}</td>
             <td>{{ request.description }}</td>
             <td>{{ request.justification }} </td>

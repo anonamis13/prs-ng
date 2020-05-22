@@ -2,13 +2,12 @@
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">{{title}}</span>
     <a routerLink="/product/create">
-        <img width="20" height="20" src="assets/add-icon.png" title="Add New">
+        <img width="20" height="20" style="margin-left: 3px;" src="assets/add-icon.png" title="Add New">
     </a>
 </section>
-<table *ngIf="products" class="table table-sm table-striped">
+<table *ngIf="products" class="table table-hover table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Vendor</th>
             <th>PartNumber</th>
             <th>Name</th>
@@ -17,7 +16,6 @@
     </thead>
     <tbody>
         <tr *ngFor="let product of products">
-            <td>{{ product.id }}</td>
             <td>{{ product.vendor.name }}</td>
             <td>{{ product.partNumber }}</td>
             <td>{{ product.name }}</td>
